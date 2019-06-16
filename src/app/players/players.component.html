@@ -1,0 +1,12 @@
+  <h2>Players</h2>
+
+  <ol>
+    <li *ngFor="let player of players">
+      <mat-checkbox>{{ player.name }} ({{ player.nickname }})</mat-checkbox>
+    </li>
+  </ol>
+
+  
+
+<button mat-stroked-button aria-label="Add player" color="primary">Add Player</button>
+
