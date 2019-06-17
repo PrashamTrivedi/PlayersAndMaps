@@ -1,12 +1,32 @@
-  <h2>Players</h2>
+  <h2 >Players</h2>
+<div class="playersList">
 
   <ol>
     <li *ngFor="let player of players">
-      <mat-checkbox>{{ player.name }} ({{ player.nickname }})</mat-checkbox>
+      <mat-checkbox (change)="onPlayerSelectionChanged(player,$event.checked)">{{ player.name }} ({{ player.nickName }})</mat-checkbox>
     </li>
   </ol>
 
+  <input matInput class="noOfTeams" type="number" placeholder="Value" [(ngModel)]="noOfTeams">
+
+
+  <span class="mat-h3 noOfPlayers">Selected Players:</span> <span class="mat-h3" [innerText]="noOfSelectedPlayers"></span>
+  
+  
+  
+  <button mat-stroked-button aria-label="Add player" color="primary">Add Player</button>
+  <button mat-raised-button aria-label="Randomise" color="primary" (click)="shuffleAndDivide()">Randomise</button>
   
 
-<button mat-stroked-button aria-label="Add player" color="primary">Add Player</button>
-
+</div>
+<div class="playersResult">
+  <ol>
+    <li *ngFor="let team of randomTeams">
+      <ul>
+        <li *ngFor="let player of team">
+            {{ player.name }} ({{ player.nickName }})
+        </li>
+      </ul>
+    </li>
+  </ol>
+</div>

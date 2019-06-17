@@ -1,0 +1,27 @@
+h2 {
+  margin: 8px;
+  text-align: center
+}
+
+.noOfPlayers {
+  margin: 0px 8px;
+}
+
+.noOfTeams {
+  margin: 0px 8px;
+  display: block;
+}
+
+button {
+  margin: 8px;
+}
+
+.playersList{
+  margin: 0px 8px;
+  
+}
+
+.playersResult{
+  margin: 0px 8px;
+  
+}

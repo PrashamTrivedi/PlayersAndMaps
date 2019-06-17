@@ -10,7 +10,7 @@ import {MatIconRegistry} from '@angular/material/icon';
 export class AppComponent {
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-    
+
   }
 
   title = 'PlayersAndMaps';
