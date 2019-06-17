@@ -5,6 +5,7 @@ h2 {
 
 .noOfPlayers {
   margin: 0px 8px;
+  display: block;
 }
 
 .noOfTeams {
@@ -18,10 +19,15 @@ button {
 
 .playersList{
   margin: 0px 8px;
-  
+  display: block;
 }
 
 .playersResult{
   margin: 0px 8px;
   
+}
+
+.player{
+  width: 10px;
+  height: 10px;
 }

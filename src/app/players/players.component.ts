@@ -11,26 +11,75 @@ export class PlayersComponent implements OnInit {
 
   players = Players;
 
+  playersAndSelection: [boolean, Player][] = [];
+
   selectedPlayers: Player[] = [];
 
   noOfSelectedPlayers = 0;
 
   noOfTeams = 1;
 
-  randomTeams: Player[][] = [];
+  randomTeams: [string, Player[]][] = [];
 
-  constructor() { }
+  constructor() {
+
+    this.players.forEach((player) => {
+      this.playersAndSelection.push([false, player]);
+    });
+  }
+
+  isCtf(checked: boolean) {
+    if (checked) {
+      this.noOfTeams = 2;
+    } else {
+      this.noOfTeams = 1;
+    }
+  }
+
+  selectAll(checked: boolean) {
+    this.playersAndSelection = [];
+    this.players.forEach((player) => {
+      this.playersAndSelection.push([checked, player]);
+    });
+    if (checked) {
+      this.selectedPlayers = this.players;
+    } else {
+      this.selectedPlayers = [];
+    }
+    this.noOfSelectedPlayers = this.selectedPlayers.length;
+
+  }
+
+  getBgColor(index: number): string {
+    if (index === 0) {
+      return 'blue';
+    } else if (index === 1) {
+      return 'orange';
+    } else if (index === 2) {
+      return 'cyan';
+    } else if (index === 3) {
+      return 'green';
+    } else {
+      return 'red';
+    }
+  }
 
   onPlayerSelectionChanged(player: Player, checked: boolean) {
     console.log(`Player ${player.name} is Checked ${checked}`);
-    if (checked) {
-      this.selectedPlayers.push(player);
-    } else {
-      const index = this.selectedPlayers.indexOf(player);
-      console.log(index);
-      this.selectedPlayers.splice(index, 1);
-    }
-    this.noOfSelectedPlayers = this.selectedPlayers.length;
+    const tupleIndex = this.playersAndSelection.findIndex((tuple) => {
+      return tuple[1].name === player.name;
+    });
+    this.playersAndSelection[tupleIndex][0] = checked;
+    // if (checked) {
+    //   this.selectedPlayers.push(player);
+    // } else {
+    //   const index = this.selectedPlayers.indexOf(player);
+    //   console.log(index);
+    //   this.selectedPlayers.splice(index, 1);
+    // }
+    this.noOfSelectedPlayers = this.playersAndSelection.filter((tuple)=>{
+      return tuple[0];
+    }).length;
   }
 
   shuffleAndDivide() {
@@ -53,10 +102,11 @@ export class PlayersComponent implements OnInit {
       const chunkIndex = Math.floor(index / lengthOfFirstArray);
 
       if (!resultArray[chunkIndex]) {
-        resultArray[chunkIndex] = []; // start a new chunk
+        const bgColor = this.getBgColor(chunkIndex);
+        resultArray[chunkIndex] = [bgColor, []]; // start a new chunk
       }
 
-      resultArray[chunkIndex].push(item);
+      resultArray[chunkIndex][1].push(item);
 
       return resultArray;
     }, []);

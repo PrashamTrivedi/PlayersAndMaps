@@ -2,15 +2,17 @@
 <div class="playersList">
 
   <ol>
-    <li *ngFor="let player of players">
-      <mat-checkbox (change)="onPlayerSelectionChanged(player,$event.checked)">{{ player.name }} ({{ player.nickName }})</mat-checkbox>
+    <li *ngFor="let player of playersAndSelection">
+      <mat-checkbox (change)="onPlayerSelectionChanged(player,$event.checked)" [checked]="player[0]">{{ player[1].name }} ({{ player[1].nickName }})</mat-checkbox>
     </li>
   </ol>
 
   <input matInput class="noOfTeams" type="number" placeholder="Value" [(ngModel)]="noOfTeams">
 
+  <mat-checkbox class="noOfTeams" (change)="isCtf($event.checked)">CTF Mode</mat-checkbox>
+  <mat-checkbox class="noOfTeams" (change)="selectAll($event.checked)">Select All</mat-checkbox>
 
-  <span class="mat-h3 noOfPlayers">Selected Players:</span> <span class="mat-h3" [innerText]="noOfSelectedPlayers"></span>
+  <span class="mat-h3 noOfPlayers">Selected Players: {{ noOfSelectedPlayers }}</span>
   
   
   
@@ -21,10 +23,10 @@
 </div>
 <div class="playersResult">
   <ol>
-    <li *ngFor="let team of randomTeams">
+    <li *ngFor="let team of randomTeams; let i=index">
       <ul>
-        <li *ngFor="let player of team">
-            {{ player.name }} ({{ player.nickName }})
+        <li *ngFor="let player of team[1]"[style.color]="team[0]" >
+          {{ player.name }} ({{ player.nickName }})
         </li>
       </ul>
     </li>
