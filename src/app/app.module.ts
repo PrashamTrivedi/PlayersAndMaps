@@ -10,6 +10,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PlayersComponent } from './players/players.component';
 import { RouterModule } from '@angular/router';
+import { StorageModule } from '@ngx-pwa/local-storage';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -28,7 +29,10 @@ import { FormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatIconModule,
     FormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    StorageModule.forRoot({
+      IDBNoWrap: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

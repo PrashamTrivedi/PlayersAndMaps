@@ -117,6 +117,7 @@ export class PlayersComponent implements OnInit {
   }
 
   ngOnInit() {
+    //TODO: Check if data is empty then enter players
     this.datalayer.getPlayers().subscribe((players => {
       this.players = players;
       this.players.forEach((player) => {
