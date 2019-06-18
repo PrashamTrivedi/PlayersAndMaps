@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Players } from 'src/preloaded/players';
 import { Player } from 'src/datatypes';
+import { DatalayerService } from '../datalayer.service';
 
 @Component({
   selector: 'app-players',
@@ -9,7 +10,7 @@ import { Player } from 'src/datatypes';
 })
 export class PlayersComponent implements OnInit {
 
-  players = Players;
+  players: Player[];
 
   playersAndSelection: [boolean, Player][] = [];
 
@@ -21,11 +22,7 @@ export class PlayersComponent implements OnInit {
 
   randomTeams: [string, Player[]][] = [];
 
-  constructor() {
-
-    this.players.forEach((player) => {
-      this.playersAndSelection.push([false, player]);
-    });
+  constructor(private datalayer: DatalayerService) {
   }
 
   isCtf(checked: boolean) {
@@ -120,6 +117,14 @@ export class PlayersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.datalayer.getPlayers().subscribe((players => {
+      this.players = players;
+      this.players.forEach((player) => {
+        this.playersAndSelection.push([false, player]);
+      });
+    }));
+
+
   }
 
 }
