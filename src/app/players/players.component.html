@@ -3,7 +3,7 @@
 
   <ol>
     <li *ngFor="let player of playersAndSelection">
-      <mat-checkbox (change)="onPlayerSelectionChanged(player,$event.checked)" [checked]="player[0]">{{ player[1].name }} ({{ player[1].nickName }})</mat-checkbox>
+      <mat-checkbox (change)="onPlayerSelectionChanged(player[1],$event.checked)" [checked]="player[0]">{{ player[1].name }} ({{ player[1].nickName }})</mat-checkbox>
     </li>
   </ol>
 

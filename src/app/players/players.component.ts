@@ -77,13 +77,17 @@ export class PlayersComponent implements OnInit {
     //   console.log(index);
     //   this.selectedPlayers.splice(index, 1);
     // }
-    this.noOfSelectedPlayers = this.playersAndSelection.filter((tuple)=>{
+    this.noOfSelectedPlayers = this.playersAndSelection.filter((tuple) => {
       return tuple[0];
     }).length;
   }
 
   shuffleAndDivide() {
-    const shuffledArray: Player[] = this.selectedPlayers;
+    const shuffledArray: Player[] = this.playersAndSelection.filter((tuple) => {
+      return tuple[0];
+    }).map((tuple) => {
+      return tuple[1];
+    });
     let l = shuffledArray.length;
     let i = 0;
     let t: Player = { name: '', id: -1, nickName: '' };
