@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // tslint:disable-next-line:max-line-length
-import { MatButtonModule, MatCheckboxModule, MatTabsModule, MatSnackBarModule, MatFormFieldModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatTabsModule, MatSnackBarModule, MatFormFieldModule, MatDialogModule, MatInputModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,12 +12,15 @@ import { PlayersComponent } from './players/players.component';
 import { RouterModule } from '@angular/router';
 import { StorageModule } from '@ngx-pwa/local-storage';
 import { FormsModule } from '@angular/forms';
+import { AddplayerdialogComponent } from './addplayerdialog/addplayerdialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlayersComponent
+    PlayersComponent,
+    AddplayerdialogComponent
   ],
+  entryComponents: [AddplayerdialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,7 +32,9 @@ import { FormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatIconModule,
     FormsModule,
+    MatInputModule,
     MatFormFieldModule,
+    MatDialogModule,
     StorageModule.forRoot({
       IDBNoWrap: true
     })

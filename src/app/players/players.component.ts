@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Players } from 'src/preloaded/players';
 import { Player } from 'src/datatypes';
 import { DatalayerService } from '../datalayer.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AddplayerdialogComponent } from '../addplayerdialog/addplayerdialog.component';
+
 
 @Component({
   selector: 'app-players',
@@ -22,7 +24,7 @@ export class PlayersComponent implements OnInit {
 
   randomTeams: [string, Player[]][] = [];
 
-  constructor(private datalayer: DatalayerService) {
+  constructor(private datalayer: DatalayerService, public dialog: MatDialog) {
   }
 
   isCtf(checked: boolean) {
@@ -67,13 +69,6 @@ export class PlayersComponent implements OnInit {
       return tuple[1].name === player.name;
     });
     this.playersAndSelection[tupleIndex][0] = checked;
-    // if (checked) {
-    //   this.selectedPlayers.push(player);
-    // } else {
-    //   const index = this.selectedPlayers.indexOf(player);
-    //   console.log(index);
-    //   this.selectedPlayers.splice(index, 1);
-    // }
     this.noOfSelectedPlayers = this.playersAndSelection.filter((tuple) => {
       return tuple[0];
     }).length;
@@ -116,16 +111,54 @@ export class PlayersComponent implements OnInit {
     console.log(teams);
   }
 
+  openDialog(): void {
+    const nextId = this.players.length + 1;
+    const dialogRef = this.dialog.open(AddplayerdialogComponent, {
+      width: '250px',
+
+      data: { id: nextId, name: '', nickName: '' },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+      if (result.name !== undefined && result.name !== '') {
+
+        this.playersAndSelection.push([false, result]);
+        this.datalayer.addPlayer(result);
+      }
+    });
+  }
+
   ngOnInit() {
-    //TODO: Check if data is empty then enter players
-    this.datalayer.getPlayers().subscribe((players => {
-      this.players = players;
-      this.players.forEach((player) => {
-        this.playersAndSelection.push([false, player]);
-      });
-    }));
+    this.datalayer.getPlayers().subscribe((players) => {
+      if (players === undefined || players === null) {
+        this.datalayer.insertPlayers().subscribe(() => {
+          this.datalayer.getPlayers().subscribe((playersList) => {
+            this.fillPlayers(playersList);
+          });
+        });
+      } else {
+        console.log(players);
+        console.log(players instanceof Array);
+        this.fillPlayers(players);
+
+
+      }
+      // this.players = players;
+
+    });
 
 
   }
 
+
+  private fillPlayers(players: unknown) {
+    if (players instanceof Array) {
+      this.players = players;
+      this.players.forEach((player) => {
+        this.playersAndSelection.push([false, player]);
+      });
+    }
+  }
 }

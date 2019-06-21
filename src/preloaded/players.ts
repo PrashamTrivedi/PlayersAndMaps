@@ -8,5 +8,6 @@ export const Players: Player[] = [
     { id: 5, name: 'Bhai', nickName: 'Mogambo' },
     { id: 6, name: 'Mehta', nickName: 'Singham' },
     { id: 7, name: 'Joshi', nickName: 'Wolverine' },
-    { id: 8, name: 'Anup', nickName: 'Goldy' }
+    { id: 8, name: 'Anup', nickName: 'Goldy' },
+    { id: 9, name: 'Rahul', nickName: 'Deadpool' }
 ];

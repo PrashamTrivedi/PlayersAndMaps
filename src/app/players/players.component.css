@@ -19,11 +19,11 @@ button {
 
 .playersList{
   margin: 0px 8px;
-  display: block;
+  float: left;
 }
 
 .playersResult{
-  margin: 0px 8px;
+  margin: 10px;
   
 }
 

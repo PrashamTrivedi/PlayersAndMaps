@@ -16,19 +16,19 @@
   
   
   
-  <button mat-stroked-button aria-label="Add player" color="primary">Add Player</button>
+  <button mat-stroked-button aria-label="Add player" color="primary" (click)="openDialog()">Add Player</button>
   <button mat-raised-button aria-label="Randomise" color="primary" (click)="shuffleAndDivide()">Randomise</button>
   
 
 </div>
 <div class="playersResult">
-  <ol>
+  <ul>
     <li *ngFor="let team of randomTeams; let i=index">
       <ul>
-        <li *ngFor="let player of team[1]"[style.color]="team[0]" >
+        <li *ngFor="let player of team[1]" [style.color]="team[0]" >
           {{ player.name }} ({{ player.nickName }})
         </li>
       </ul>
     </li>
-  </ol>
+  </ul>
 </div>

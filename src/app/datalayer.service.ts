@@ -24,8 +24,9 @@ export class DatalayerService {
     return this.storageMap.set('maps', Maps);
   }
 
-  getPlayers(): Observable<Player[]> {
-    return of(this.players);
+  getPlayers(): Observable<unknown> {
+
+    return this.storageMap.get<Player[]>('players');
   }
 
   getMaps(): Map[] {
@@ -34,6 +35,7 @@ export class DatalayerService {
 
   addPlayer(player: Player) {
     this.players.push(player);
+    this.storageMap.set('players', this.players).subscribe(() => { });
   }
 
 }
