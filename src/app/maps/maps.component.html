@@ -1,0 +1,10 @@
+  <h1>Today's ({{ noOfMaps }}) Maps are: </h1>
+  
+  <ul>
+    <li *ngFor="let map of playableMaps">
+      {{ map.name }}
+    </li>
+  </ul>
+
+  <button mat-stroked-button aria-label="Add map" color="primary" (click)="openDialog()">Add Map</button>
+  <button mat-raised-button aria-label="Randomise" color="primary" (click)="randomiseMaps()">Randomise</button>

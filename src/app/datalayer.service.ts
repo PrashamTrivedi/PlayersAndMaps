@@ -29,8 +29,13 @@ export class DatalayerService {
     return this.storageMap.get<Player[]>('players');
   }
 
-  getMaps(): Map[] {
-    return this.maps;
+  getMaps(): Observable<unknown> {
+    return this.storageMap.get<Map[]>('maps');
+  }
+
+  addMap(map: Map) {
+    this.maps.push(map);
+    this.storageMap.set('maps', this.maps).subscribe(() => { });
   }
 
   addPlayer(player: Player) {

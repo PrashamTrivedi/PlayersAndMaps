@@ -9,5 +9,6 @@ export class Map {
     name: string;
     path: string;
     lastPlayedAt: number;
-    goodFor: number;
+    isDm: boolean;
+    isSnow: boolean;
 }

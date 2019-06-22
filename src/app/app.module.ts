@@ -13,12 +13,14 @@ import { RouterModule } from '@angular/router';
 import { StorageModule } from '@ngx-pwa/local-storage';
 import { FormsModule } from '@angular/forms';
 import { AddplayerdialogComponent } from './addplayerdialog/addplayerdialog.component';
+import { MapsComponent } from './maps/maps.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayersComponent,
-    AddplayerdialogComponent
+    AddplayerdialogComponent,
+    MapsComponent
   ],
   entryComponents: [AddplayerdialogComponent],
   imports: [

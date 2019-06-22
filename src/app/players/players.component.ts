@@ -142,14 +142,8 @@ export class PlayersComponent implements OnInit {
         console.log(players);
         console.log(players instanceof Array);
         this.fillPlayers(players);
-
-
       }
-      // this.players = players;
-
     });
-
-
   }
 
 
