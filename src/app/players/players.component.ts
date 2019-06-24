@@ -3,6 +3,7 @@ import { Player } from 'src/datatypes';
 import { DatalayerService } from '../datalayer.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddplayerdialogComponent } from '../addplayerdialog/addplayerdialog.component';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -21,6 +22,8 @@ export class PlayersComponent implements OnInit {
   noOfSelectedPlayers = 0;
 
   noOfTeams = 1;
+
+  isCtfMode = false;
 
   randomTeams: [string, Player[]][] = [];
 
@@ -108,6 +111,9 @@ export class PlayersComponent implements OnInit {
     }, []);
 
     this.randomTeams = teams;
+
+    this.datalayer.setSelectedPlayersCount(shuffledArray.length);
+
     console.log(teams);
   }
 

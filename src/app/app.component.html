@@ -4,19 +4,5 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<mat-tab-group headerPosition="below" dynamicHeight  mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
-  <mat-tab>
-      <ng-template mat-tab-label>
-          <mat-icon class="example-tab-icon">people</mat-icon>
-          Players
-        </ng-template>
-    <app-players></app-players> </mat-tab>
-  <mat-tab >
-      <ng-template mat-tab-label>
-          <mat-icon class="example-tab-icon">games</mat-icon>
-          Maps
-        </ng-template>
-    Content 2 </mat-tab>
-</mat-tab-group>
-
+<app-players></app-players>
 <router-outlet></router-outlet>

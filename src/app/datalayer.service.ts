@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Player, Map } from 'src/datatypes';
 import { Players } from 'src/preloaded/players';
 import { Maps } from 'src/preloaded/maps';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { StorageMap } from '@ngx-pwa/local-storage';
 
 @Injectable({
@@ -15,6 +15,13 @@ export class DatalayerService {
   private players = Players;
 
   private maps = Maps;
+
+  selectedPlayersCount: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+
+  setSelectedPlayersCount(setSelectedPlayersCount: number): void {
+    console.log(`Setting ${setSelectedPlayersCount}`);
+    this.selectedPlayersCount.next(setSelectedPlayersCount);
+  }
 
   insertPlayers(): Observable<undefined> {
     return this.storageMap.set('players', Players);
@@ -43,4 +50,11 @@ export class DatalayerService {
     this.storageMap.set('players', this.players).subscribe(() => { });
   }
 
+  updateMap(map: Map) {
+    const index = this.maps.findIndex((mapToFind) => {
+      return mapToFind.id === map.id;
+    });
+    this.maps[index] = map;
+    this.storageMap.set('maps', this.maps).subscribe(() => { });
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
 import { DatalayerService } from '../datalayer.service';
 import { MatDialog } from '@angular/material';
 import { Map } from 'src/datatypes';
@@ -7,30 +7,38 @@ import { Map } from 'src/datatypes';
   selector: 'app-maps',
   templateUrl: './maps.component.html',
   styleUrls: ['./maps.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MapsComponent implements OnInit {
+
 
   maps: Map[];
   playableMaps: Map[];
 
   noOfMaps: number;
 
-  @Input() noOfPlayers: number;
+  noOfPlayers: number;
 
-  constructor(private datalayer: DatalayerService, public dialog: MatDialog) { }
+  constructor(private datalayer: DatalayerService, public dialog: MatDialog) {
+
+    datalayer.selectedPlayersCount.subscribe((numberOfPlayers) => {
+      this.noOfPlayers = numberOfPlayers;
+      if (this.noOfPlayers % 2 === 0) {
+        this.noOfMaps = 3;
+      } else {
+        this.noOfMaps = 2;
+      }
+    });
+
+  }
+
 
   ngOnInit() {
-    if (this.noOfPlayers % 2 === 0) {
-      this.noOfMaps = 3;
-    } else {
-      this.noOfMaps = 2;
-    }
+
     this.datalayer.getMaps().subscribe((maps) => {
       if (maps === undefined || maps === null) {
         this.datalayer.insertMaps().subscribe(() => {
           this.datalayer.getMaps().subscribe((filledMaps) => {
-            this.loadMaps(maps);
+            this.loadMaps(filledMaps);
           });
         });
       } else {
@@ -85,6 +93,15 @@ export class MapsComponent implements OnInit {
       console.log(this.maps);
     }
 
+  }
+
+  selectMaps() {
+    const now = new Date().getMilliseconds();
+    this.playableMaps.map((mapData) => {
+      mapData.lastPlayedAt = now;
+      console.log(mapData);
+      this.datalayer.updateMap(mapData);
+    });
   }
 
 }
