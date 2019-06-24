@@ -22,6 +22,7 @@ export class MapsComponent implements OnInit {
 
     datalayer.selectedPlayersCount.subscribe((numberOfPlayers) => {
       this.noOfPlayers = numberOfPlayers;
+      this.playableMaps=[];
       if (this.noOfPlayers % 2 === 0) {
         this.noOfMaps = 3;
       } else {

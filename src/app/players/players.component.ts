@@ -31,6 +31,7 @@ export class PlayersComponent implements OnInit {
   }
 
   isCtf(checked: boolean) {
+    this.isCtfMode = checked;
     if (checked) {
       this.noOfTeams = 2;
     } else {
@@ -49,6 +50,7 @@ export class PlayersComponent implements OnInit {
       this.selectedPlayers = [];
     }
     this.noOfSelectedPlayers = this.selectedPlayers.length;
+    this.datalayer.setSelectedPlayersCount(this.noOfSelectedPlayers);
 
   }
 
@@ -75,6 +77,7 @@ export class PlayersComponent implements OnInit {
     this.noOfSelectedPlayers = this.playersAndSelection.filter((tuple) => {
       return tuple[0];
     }).length;
+    this.datalayer.setSelectedPlayersCount(this.noOfSelectedPlayers);
   }
 
   shuffleAndDivide() {

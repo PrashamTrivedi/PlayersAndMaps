@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // tslint:disable-next-line:max-line-length
-import { MatButtonModule, MatCheckboxModule, MatTabsModule, MatSnackBarModule, MatFormFieldModule, MatDialogModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatTabsModule, MatSnackBarModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatCardModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +33,7 @@ import { MapsComponent } from './maps/maps.component';
     MatTabsModule,
     MatSnackBarModule,
     MatIconModule,
+    MatCardModule,
     FormsModule,
     MatInputModule,
     MatFormFieldModule,

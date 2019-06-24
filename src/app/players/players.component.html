@@ -1,35 +1,47 @@
-  <h2 >Players</h2>
+<h2>Players</h2>
 <div class="playersList">
+  <mat-card>
 
-  <ol>
-    <li *ngFor="let player of playersAndSelection">
-      <mat-checkbox (change)="onPlayerSelectionChanged(player[1],$event.checked)" [checked]="player[0]">{{ player[1].name }} ({{ player[1].nickName }})</mat-checkbox>
-    </li>
-  </ol>
+    <ol>
+      <li *ngFor="let player of playersAndSelection">
+        <mat-checkbox (change)="onPlayerSelectionChanged(player[1],$event.checked)" [checked]="player[0]">
+          {{ player[1].name }} ({{ player[1].nickName }})</mat-checkbox>
+      </li>
+    </ol>
 
-  <input matInput class="noOfTeams" type="number" placeholder="Value" [(ngModel)]="noOfTeams">
+    <mat-form-field>
+      <input matInput class="noOfTeams" placeholder="No Of Teams" type="number" [disabled]="isCtfMode"
+        [(ngModel)]="noOfTeams">
+    </mat-form-field>
 
-  <mat-checkbox class="noOfTeams" (change)="isCtf($event.checked)">CTF Mode</mat-checkbox>
-  <mat-checkbox class="noOfTeams" (change)="selectAll($event.checked)">Select All</mat-checkbox>
+    <mat-checkbox class="noOfTeams" (change)="isCtf($event.checked)">CTF Mode</mat-checkbox>
+    <mat-checkbox class="noOfTeams" (change)="selectAll($event.checked)">Select All</mat-checkbox>
 
-  <span class="mat-h3 noOfPlayers">Selected Players: {{ noOfSelectedPlayers }}</span>
-  
-  
-  
-  <button mat-stroked-button aria-label="Add player" color="primary" (click)="openDialog()">Add Player</button>
-  <button mat-raised-button aria-label="Randomise" color="primary" (click)="shuffleAndDivide()">Randomise</button>
-  
+    <span class="mat-h3 noOfPlayers">Selected Players: {{ noOfSelectedPlayers }}</span>
 
+
+
+    <button mat-stroked-button aria-label="Add player" color="primary" (click)="openDialog()">Add Player</button>
+    <button mat-raised-button aria-label="Randomise" color="primary" (click)="shuffleAndDivide()">Randomise</button>
+
+
+  </mat-card>
 </div>
+
+
 <div class="playersResult">
-  <ul>
-    <li *ngFor="let team of randomTeams; let i=index">
-      <ul>
-        <li *ngFor="let player of team[1]" [style.color]="team[0]" >
-          {{ player.name }} ({{ player.nickName }})
-        </li>
-      </ul>
-    </li>
-  </ul>
-  <app-maps *ngIf="noOfSelectedPlayers > 0" ></app-maps>
+  <mat-card>
+    <ul>
+      <li *ngFor="let team of randomTeams; let i=index">
+        <ul>
+          <li *ngFor="let player of team[1]" [style.color]="team[0]">
+            {{ player.name }} ({{ player.nickName }})
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </mat-card>
+  <mat-card class="playersResult">
+    <app-maps *ngIf="noOfSelectedPlayers > 0"></app-maps>
+  </mat-card>
 </div>
