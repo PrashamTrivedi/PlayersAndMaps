@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "myblog-39e89"
+  },
+  "targets": {
+    "myblog-39e89": {
+      "hosting": {
+        "mmpm": [
+          "mmplayers"
+        ]
+      }
+    }
   }
 }

@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target":"mmpm",
     "public": "dist/PlayersAndMaps",
     "ignore": [
       "firebase.json",
