@@ -6,7 +6,7 @@ export const Maps: Map[] = [
         name: 'Outpost',
         path: '',
         lastPlayedAt: 0,
-        isDm: true,
+        isDm: false,
         isSnow: false
     },
     {
