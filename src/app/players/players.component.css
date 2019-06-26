@@ -3,6 +3,10 @@ h2 {
   text-align: center
 }
 
+.mainBody{
+  overflow: hidden;
+}
+
 .noOfPlayers {
   margin: 0px 8px;
   display: block;
@@ -17,18 +21,22 @@ button {
   margin: 8px;
 }
 
-.playersList{
+.playersList {
   margin: 10px 10px;
-  float: left;
+  
 }
 
-.playersResult{
-  margin: 10px 10px;
-  float: left;
+.playersResult {
+  margin: 5px 8px;
   padding: 5px;
 }
 
-.player{
+.mapsResult {
+  margin: 5px 8px;
+  padding: 5px;
+}
+
+.player {
   width: 10px;
   height: 10px;
 }

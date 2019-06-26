@@ -1,47 +1,53 @@
 <h2>Players</h2>
-<div class="playersList">
-  <mat-card>
+<div class="mainBody">
 
-    <mat-checkbox class="noOfTeams" (change)="selectAll($event.checked)">Select All</mat-checkbox>
-    <ol>
-      <li *ngFor="let player of playersAndSelection">
-        <mat-checkbox (change)="onPlayerSelectionChanged(player[1],$event.checked)" [checked]="player[0]">
-          {{ player[1].name }} ({{ player[1].nickName }})</mat-checkbox>
-      </li>
-    </ol>
+  <div class="playersList">
+    <mat-card>
 
-    <mat-form-field>
-      <input matInput class="noOfTeams" placeholder="No Of Teams" type="number" [disabled]="isCtfMode"
-        [(ngModel)]="noOfTeams">
-    </mat-form-field>
+      <mat-checkbox class="noOfTeams" (change)="selectAll($event.checked)">Select All</mat-checkbox>
+      <ol>
+        <li *ngFor="let player of playersAndSelection">
+          <mat-checkbox (change)="onPlayerSelectionChanged(player[1],$event.checked)" [checked]="player[0]">
+            {{ player[1].name }} ({{ player[1].nickName }})</mat-checkbox>
+        </li>
+      </ol>
 
-    <mat-checkbox class="noOfTeams" [checked]="isCtfMode" (change)="isCtf($event.checked)">CTF Mode</mat-checkbox>
-   
-    <span class="mat-h3 noOfPlayers">Selected Players: {{ noOfSelectedPlayers }}</span>
+      <mat-form-field>
+        <input matInput class="noOfTeams" placeholder="No Of Teams" type="number" [disabled]="isCtfMode"
+          [(ngModel)]="noOfTeams">
+      </mat-form-field>
 
+      <mat-checkbox class="noOfTeams" [checked]="isCtfMode" (change)="isCtf($event.checked)">CTF Mode</mat-checkbox>
 
-
-    <button mat-stroked-button aria-label="Add player" color="primary" (click)="openDialog()">Add Player</button>
-    <button mat-raised-button aria-label="Randomise" color="primary" (click)="shuffleAndDivide()">Randomise</button>
+      <span class="mat-h3 noOfPlayers">Selected Players: {{ noOfSelectedPlayers }}</span>
 
 
-  </mat-card>
-</div>
+
+      <button mat-stroked-button aria-label="Add player" color="primary" (click)="openDialog()">Add Player</button>
+      <button mat-raised-button aria-label="Randomise" color="primary" (click)="shuffleAndDivide()">Randomise</button>
 
 
-<div class="playersResult">
-  <mat-card>
-    <ul>
-      <li *ngFor="let team of randomTeams; let i=index">
-        <ul>
-          <li *ngFor="let player of team[1]" [style.color]="team[0]">
-            {{ player.name }} ({{ player.nickName }})
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </mat-card>
-  <mat-card class="playersResult">
-    <app-maps *ngIf="noOfSelectedPlayers > 0"></app-maps>
-  </mat-card>
+    </mat-card>
+  </div>
+
+
+  <div class="playersResult">
+    <mat-card>
+      <ul>
+        <li *ngFor="let team of randomTeams; let i=index">
+          <ul>
+            <li *ngFor="let player of team[1]" [style.color]="team[0]">
+              {{ player.name }} ({{ player.nickName }})
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </mat-card>
+
+  </div>
+  <div class="mapsResult">
+    <mat-card>
+      <app-maps *ngIf="noOfSelectedPlayers > 0"></app-maps>
+    </mat-card>
+  </div>
 </div>
