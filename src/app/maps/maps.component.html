@@ -9,4 +9,4 @@
 <button mat-stroked-button aria-label="Add map" color="primary" (click)="openDialog()">Add Map</button>
 <button mat-raised-button aria-label="Show Maps" color="primary" (click)="randomiseMaps()">Show Maps</button>
 <button mat-raised-button aria-label="Select" color="primary" (click)="selectMaps()"
-  *ngIf="playableMaps">Play</button>
+  *ngIf="playableMaps.length > 0 ">Play</button>
