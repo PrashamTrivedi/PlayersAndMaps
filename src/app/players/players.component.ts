@@ -96,8 +96,14 @@ export class PlayersComponent implements OnInit {
       shuffledArray[l] = shuffledArray[i];
       shuffledArray[i] = t;
     }
+    let middlePlayer: Player = { id: -1, name: '', nickName: '' };
+    if (this.isCtfMode && shuffledArray.length % 2 !== 0) {
+      const randomIndex = Math.floor(Math.random() * shuffledArray.length);
+      middlePlayer = shuffledArray[randomIndex];
+      shuffledArray.splice(randomIndex, 1);
+    }
 
-    const lengthOfFirstArray = this.noOfSelectedPlayers / this.noOfTeams;
+    const lengthOfFirstArray = shuffledArray.length / this.noOfTeams;
     console.log(lengthOfFirstArray);
 
     const teams = shuffledArray.reduce((resultArray, item, index) => {
@@ -112,6 +118,12 @@ export class PlayersComponent implements OnInit {
 
       return resultArray;
     }, []);
+
+    if (middlePlayer.id !== -1) {
+      teams.push(['black', [middlePlayer]]);
+
+    }
+    // teams.push(shuffledTeams)
 
     this.randomTeams = teams;
 
