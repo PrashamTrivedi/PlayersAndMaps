@@ -15,9 +15,8 @@
         [(ngModel)]="noOfTeams">
     </mat-form-field>
 
-    <mat-checkbox class="noOfTeams" (change)="isCtf($event.checked)">CTF Mode</mat-checkbox>
-    <mat-checkbox class="noOfTeams" (change)="selectAll($event.checked)">Select All</mat-checkbox>
-
+    <mat-checkbox class="noOfTeams" [checked]="isCtfMode" (change)="isCtf($event.checked)">CTF Mode</mat-checkbox>
+   
     <span class="mat-h3 noOfPlayers">Selected Players: {{ noOfSelectedPlayers }}</span>
 
 

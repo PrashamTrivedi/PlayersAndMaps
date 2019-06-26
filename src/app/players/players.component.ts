@@ -23,7 +23,7 @@ export class PlayersComponent implements OnInit {
 
   noOfTeams = 2;
 
-  isCtfMode = false;
+  isCtfMode = true;
 
   randomTeams: [string, Player[]][] = [];
 
