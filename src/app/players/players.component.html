@@ -2,6 +2,7 @@
 <div class="playersList">
   <mat-card>
 
+    <mat-checkbox class="noOfTeams" (change)="selectAll($event.checked)">Select All</mat-checkbox>
     <ol>
       <li *ngFor="let player of playersAndSelection">
         <mat-checkbox (change)="onPlayerSelectionChanged(player[1],$event.checked)" [checked]="player[0]">
