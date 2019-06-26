@@ -21,7 +21,7 @@ export class PlayersComponent implements OnInit {
 
   noOfSelectedPlayers = 0;
 
-  noOfTeams = 1;
+  noOfTeams = 2;
 
   isCtfMode = false;
 
