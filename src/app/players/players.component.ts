@@ -127,7 +127,7 @@ export class PlayersComponent implements OnInit {
 
     this.randomTeams = teams;
 
-    this.datalayer.setSelectedPlayersCount(shuffledArray.length);
+    // this.datalayer.setSelectedPlayersCount(this.);
 
     console.log(teams);
   }
