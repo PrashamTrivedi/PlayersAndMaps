@@ -30,12 +30,14 @@ export class PlayersComponent implements OnInit {
   constructor(private datalayer: DatalayerService, public dialog: MatDialog) {
   }
 
+  getMaxPlayers(): number {
+    return Math.max(2, this.noOfSelectedPlayers);
+  }
+
   isCtf(checked: boolean) {
     this.isCtfMode = checked;
     if (checked) {
       this.noOfTeams = 2;
-    } else {
-      this.noOfTeams = 1;
     }
   }
 
@@ -123,11 +125,8 @@ export class PlayersComponent implements OnInit {
       teams.push(['black', [middlePlayer]]);
 
     }
-    // teams.push(shuffledTeams)
 
     this.randomTeams = teams;
-
-    // this.datalayer.setSelectedPlayersCount(this.);
 
     console.log(teams);
   }

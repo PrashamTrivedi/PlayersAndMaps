@@ -13,7 +13,7 @@
       </ol>
 
       <mat-form-field>
-        <input matInput class="noOfTeams" placeholder="No Of Teams" type="number" [disabled]="isCtfMode"
+        <input matInput class="noOfTeams" placeholder="No Of Teams" min="2" [max]="getMaxPlayers()" type="number" [disabled]="isCtfMode"
           [(ngModel)]="noOfTeams">
       </mat-form-field>
 
