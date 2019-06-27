@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, OnChanges, SimpleCha
 import { DatalayerService } from '../datalayer.service';
 import { MatDialog } from '@angular/material';
 import { Map } from 'src/datatypes';
+import { AddmapdialogComponent } from '../addmapdialog/addmapdialog.component';
 
 @Component({
   selector: 'app-maps',
@@ -49,6 +50,27 @@ export class MapsComponent implements OnInit {
   }
 
   openDialog() {
+    const nextId = this.maps.length + 1;
+    const dialogRef = this.dialog.open(AddmapdialogComponent, {
+      width: '250px',
+      data: {
+        id: nextId,
+        name: '',
+        path: '',
+        lastPlayedAt: 0,
+        isDm: false,
+        isSnow: false
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if (result.name !== undefined && result.name !== '') {
+
+        this.maps.push(result);
+        this.datalayer.addMap(result);
+      }
+    });
 
   }
 

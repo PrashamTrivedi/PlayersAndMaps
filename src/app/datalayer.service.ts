@@ -32,8 +32,7 @@ export class DatalayerService {
   }
 
   getPlayers(): Observable<unknown> {
-
-    return this.storageMap.get<Player[]>('players');
+    return this.storageMap.get<Player[]>('players').;
   }
 
   getMaps(): Observable<unknown> {

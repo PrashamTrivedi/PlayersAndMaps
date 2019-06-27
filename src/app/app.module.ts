@@ -14,15 +14,17 @@ import { StorageModule } from '@ngx-pwa/local-storage';
 import { FormsModule } from '@angular/forms';
 import { AddplayerdialogComponent } from './addplayerdialog/addplayerdialog.component';
 import { MapsComponent } from './maps/maps.component';
+import { AddmapdialogComponent } from './addmapdialog/addmapdialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayersComponent,
     AddplayerdialogComponent,
-    MapsComponent
+    MapsComponent,
+    AddmapdialogComponent
   ],
-  entryComponents: [AddplayerdialogComponent],
+  entryComponents: [AddplayerdialogComponent,AddmapdialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,0 +1,18 @@
+
+  <h1 mat-dialog-title>Add Map</h1>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input placeholder="Name" matInput [(ngModel)]="map.name">
+    </mat-form-field>
+    <div>
+      <mat-checkbox [(ngModel)]="map.isDm">Is For DM</mat-checkbox>
+    </div>
+    <div>
+      <mat-checkbox [(ngModel)]="map.isSnow">Is Snow</mat-checkbox>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="map" cdkFocusInitial>Ok</button>
+  </div>
+
