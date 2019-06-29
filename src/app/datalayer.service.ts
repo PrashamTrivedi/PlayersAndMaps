@@ -10,11 +10,30 @@ import { StorageMap } from '@ngx-pwa/local-storage';
 })
 export class DatalayerService {
 
-  constructor(private storageMap: StorageMap) { }
+  constructor(private storageMap: StorageMap) {
+    this.getPlayers().subscribe((players) => {
+      if (players === undefined || players === null) {
+        this.players = Players;
+      } else {
+        if (players instanceof Array) {
+          this.players = players;
+        }
+      }
+    });
+    this.getMaps().subscribe((maps) => {
+      if (maps === undefined || maps === null) {
+        this.maps = Maps;
+      } else {
+        if (maps instanceof Array) {
+          this.maps = maps;
+        }
+      }
+    });
+  }
 
-  private players = Players;
+  private players: Player[];
 
-  private maps = Maps;
+  private maps: Map[];
 
   selectedPlayersCount: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
