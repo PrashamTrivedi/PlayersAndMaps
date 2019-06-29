@@ -24,7 +24,7 @@ import { AddmapdialogComponent } from './addmapdialog/addmapdialog.component';
     MapsComponent,
     AddmapdialogComponent
   ],
-  entryComponents: [AddplayerdialogComponent,AddmapdialogComponent],
+  entryComponents: [AddplayerdialogComponent, AddmapdialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
