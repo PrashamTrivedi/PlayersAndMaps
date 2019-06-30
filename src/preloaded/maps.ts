@@ -4,7 +4,7 @@ export const Maps: Map[] = [
     {
         id: 1,
         name: 'Outpost',
-        path: '',
+        path: 'assets/maps/Outpost.png',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -12,7 +12,7 @@ export const Maps: Map[] = [
     {
         id: 2,
         name: 'High Tower',
-        path: '',
+        path: 'assets/maps/HighTower.png',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -20,7 +20,7 @@ export const Maps: Map[] = [
     {
         id: 3,
         name: 'Subdivision',
-        path: '',
+        path: 'assets/maps/Subdivision.png',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -28,7 +28,7 @@ export const Maps: Map[] = [
     {
         id: 4,
         name: 'Bottle Neck',
-        path: '',
+        path: 'assets/maps/BottleNeck.png',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -36,7 +36,7 @@ export const Maps: Map[] = [
     {
         id: 5,
         name: 'No Escape',
-        path: '',
+        path: 'assets/maps/NoEscape.png',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -44,7 +44,7 @@ export const Maps: Map[] = [
     {
         id: 6,
         name: 'So Long',
-        path: '',
+        path: 'assets/maps/SoLong.jpg',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -52,7 +52,7 @@ export const Maps: Map[] = [
     {
         id: 7,
         name: 'Lunarcy',
-        path: '',
+        path: 'assets/maps/Lunarcy.png',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -60,7 +60,7 @@ export const Maps: Map[] = [
     {
         id: 8,
         name: 'Ice Box',
-        path: '',
+        path: 'assets/maps/IceBox.png',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: true
@@ -68,7 +68,7 @@ export const Maps: Map[] = [
     {
         id: 9,
         name: 'Snow Blind',
-        path: '',
+        path: 'assets/maps/SnowBlind.png',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: true
@@ -76,7 +76,7 @@ export const Maps: Map[] = [
     {
         id: 10,
         name: 'Pyramid',
-        path: '',
+        path: 'assets/maps/Pyramid.png',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -84,7 +84,7 @@ export const Maps: Map[] = [
     {
         id: 11,
         name: 'Catacombs',
-        path: '',
+        path: 'assets/maps/CataCombs.png',
         lastPlayedAt: 0,
         isDm: true,
         isSnow: false
@@ -92,7 +92,7 @@ export const Maps: Map[] = [
     {
         id: 12,
         name: 'Overseer',
-        path: '',
+        path: 'assets/maps/Overseer.png',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -100,7 +100,7 @@ export const Maps: Map[] = [
     {
         id: 13,
         name: 'Suspension',
-        path: '',
+        path: 'assets/maps/Suspension.png',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -108,7 +108,7 @@ export const Maps: Map[] = [
     {
         id: 14,
         name: 'Cliffhanger',
-        path: '',
+        path: 'assets/maps/CliffHanger.png',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -116,7 +116,7 @@ export const Maps: Map[] = [
     {
         id: 15,
         name: 'Crossfire',
-        path: '',
+        path: 'assets/maps/CrossFire.png',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -124,7 +124,7 @@ export const Maps: Map[] = [
     {
         id: 16,
         name: 'Undermine',
-        path: '',
+        path: 'assets/maps/Undermine.png',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -132,7 +132,7 @@ export const Maps: Map[] = [
     {
         id: 17,
         name: 'Underground',
-        path: '',
+        path: 'assets/maps/Underground.jpg',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -140,7 +140,7 @@ export const Maps: Map[] = [
     {
         id: 18,
         name: 'Junkyard',
-        path: '',
+        path: 'assets/maps/Junkyard.jpg',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false
@@ -148,7 +148,7 @@ export const Maps: Map[] = [
     {
         id: 19,
         name: 'Vantage',
-        path: '',
+        path: 'assets/maps/Vantage.jpg',
         lastPlayedAt: 0,
         isDm: false,
         isSnow: false

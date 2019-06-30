@@ -131,6 +131,10 @@ export class PlayersComponent implements OnInit {
     console.log(teams);
   }
 
+  refreshData(): void {
+    this.datalayer.reloadPresetData();
+  }
+
   openDialog(): void {
     const nextId = this.players.length + 1;
     const dialogRef = this.dialog.open(AddplayerdialogComponent, {

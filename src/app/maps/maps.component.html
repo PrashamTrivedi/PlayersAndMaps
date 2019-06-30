@@ -2,7 +2,7 @@
 
 <ul>
   <li *ngFor="let map of playableMaps">
-    {{ map.name }}
+   <img [src]="map.path" height="50" width="50"/> {{ map.name }}
   </li>
 </ul>
 

@@ -37,6 +37,32 @@ export class DatalayerService {
 
   selectedPlayersCount: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
+  reloadPresetData(): void {
+    Players.forEach((player) => {
+      const index = this.players.findIndex((playerInDb) => {
+        return playerInDb.id === player.id;
+      });
+      if (index === -1) {
+        this.players.push(player);
+      } else {
+        this.players[index] = player;
+      }
+    });
+    this.storageMap.set('players', this.players).subscribe(() => { });
+
+    Maps.forEach((map) => {
+      const index = this.maps.findIndex((mapInDb) => {
+        return mapInDb.id === map.id;
+      });
+      if (index === -1) {
+        this.maps.push(map);
+      } else {
+        this.maps[index] = map;
+      }
+    });
+    this.storageMap.set('maps', this.maps).subscribe(() => { });
+  }
+
   setSelectedPlayersCount(setSelectedPlayersCount: number): void {
     console.log(`Setting ${setSelectedPlayersCount}`);
     this.selectedPlayersCount.next(setSelectedPlayersCount);
