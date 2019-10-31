@@ -52,7 +52,7 @@
   </div>
   <div class="mapsResult">
     <mat-card>
-      <app-maps *ngIf="noOfSelectedPlayers > 0"></app-maps>
+      <app-maps *ngIf="!isCtfMode || noOfSelectedPlayers > 0"></app-maps>
     </mat-card>
   </div>
 </div>

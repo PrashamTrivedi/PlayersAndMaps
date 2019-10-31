@@ -88,7 +88,7 @@ export class MapsComponent implements OnInit {
     }
     const now = new Date().getMilliseconds();
     const unsortedMaps = this.maps.filter((map) => {
-      return !map.isDm && map.lastPlayedAt === 0 || (now - map.lastPlayedAt >= 3 * 24 * 60 * 60 * 1000);
+      return !this.isCtf || (!map.isDm && map.lastPlayedAt === 0 || (now - map.lastPlayedAt >= 3 * 24 * 60 * 60 * 1000));
     }).sort((first, second) => {
       if (first.isDm) {
         return -1;
