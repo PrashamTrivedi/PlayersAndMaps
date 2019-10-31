@@ -4,6 +4,7 @@ import { DatalayerService } from '../datalayer.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddplayerdialogComponent } from '../addplayerdialog/addplayerdialog.component';
 import { BehaviorSubject } from 'rxjs';
+import { InactivePlayerDialogComponent } from '../inactive-player-dialog/inactive-player-dialog.component';
 
 
 @Component({
@@ -24,6 +25,8 @@ export class PlayersComponent implements OnInit {
   noOfTeams = 2;
 
   isCtfMode = true;
+
+  hasAnyInActivePlayers = false;
 
   randomTeams: [string, Player[]][] = [];
 
@@ -90,7 +93,7 @@ export class PlayersComponent implements OnInit {
     });
     let l = shuffledArray.length;
     let i = 0;
-    let t: Player = { name: '', id: -1, nickName: '' };
+    let t: Player = { name: '', id: -1, nickName: '', isInactive: false };
     if (l <= 1) { return; }
     while (l) {
       i = Math.floor(Math.random() * l--);
@@ -98,7 +101,7 @@ export class PlayersComponent implements OnInit {
       shuffledArray[l] = shuffledArray[i];
       shuffledArray[i] = t;
     }
-    let middlePlayer: Player = { id: -1, name: '', nickName: '' };
+    let middlePlayer: Player = { id: -1, name: '', nickName: '', isInactive: false };
     if (this.isCtfMode && shuffledArray.length % 2 !== 0) {
       const randomIndex = Math.floor(Math.random() * shuffledArray.length);
       middlePlayer = shuffledArray[randomIndex];
@@ -135,6 +138,33 @@ export class PlayersComponent implements OnInit {
     this.datalayer.reloadPresetData();
   }
 
+  deactivatePlayer(player: Player) {
+    this.datalayer.deactivatePlayer(player).subscribe(() => {
+      this.reloadPlayers();
+    });
+  }
+
+  openInactiveDialog(): void {
+    const inactivePlayers = this.players.filter((player) => player.isInactive);
+    console.log(inactivePlayers);
+    const dialogRef = this.dialog.open(InactivePlayerDialogComponent, {
+      width: '250px',
+
+      data: { dataService: this.datalayer, players: inactivePlayers },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.reloadPlayers();
+    });
+
+  }
+
+  private reloadPlayers() {
+    this.players = [];
+    this.playersAndSelection = [];
+    this.loadPlayers();
+  }
+
   openDialog(): void {
     const nextId = this.players.length + 1;
     const dialogRef = this.dialog.open(AddplayerdialogComponent, {
@@ -155,6 +185,11 @@ export class PlayersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadPlayers();
+  }
+
+
+  private loadPlayers() {
     this.datalayer.getPlayers().subscribe((players) => {
       if (players === undefined || players === null) {
         this.datalayer.insertPlayers().subscribe(() => {
@@ -163,18 +198,20 @@ export class PlayersComponent implements OnInit {
           });
         });
       } else {
-        console.log(players);
-        console.log(players instanceof Array);
         this.fillPlayers(players);
       }
     });
   }
 
-
   private fillPlayers(players: unknown) {
     if (players instanceof Array) {
       this.players = players;
-      this.players.forEach((player) => {
+      this.hasAnyInActivePlayers = this.players.findIndex((player) => {
+        return player.isInactive;
+      }) !== -1;
+      this.players.filter((player) => {
+        return !player.isInactive;
+      }).forEach((player) => {
         this.playersAndSelection.push([false, player]);
       });
     }

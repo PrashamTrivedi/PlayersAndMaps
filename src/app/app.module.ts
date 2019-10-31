@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { AddplayerdialogComponent } from './addplayerdialog/addplayerdialog.component';
 import { MapsComponent } from './maps/maps.component';
 import { AddmapdialogComponent } from './addmapdialog/addmapdialog.component';
+import { InactivePlayerDialogComponent } from './inactive-player-dialog/inactive-player-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +23,10 @@ import { AddmapdialogComponent } from './addmapdialog/addmapdialog.component';
     PlayersComponent,
     AddplayerdialogComponent,
     MapsComponent,
-    AddmapdialogComponent
+    AddmapdialogComponent,
+    InactivePlayerDialogComponent
   ],
-  entryComponents: [AddplayerdialogComponent, AddmapdialogComponent],
+  entryComponents: [AddplayerdialogComponent, AddmapdialogComponent, InactivePlayerDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,0 +1,12 @@
+<p>
+  Inactive Players
+</p>
+<ol>
+ 
+  <li *ngFor="let player of inactivePlayers">
+    {{ player.name }} ({{ player.nickName }})
+    <button mat-icon-button color="accent" aria-label="Example icon-button with a heart icon" (click)="activatePlayer(player)">
+      <mat-icon>done</mat-icon>
+    </button>
+  </li>
+</ol>

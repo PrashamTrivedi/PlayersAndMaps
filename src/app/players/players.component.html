@@ -10,6 +10,9 @@
         <li *ngFor="let player of playersAndSelection">
           <mat-checkbox (change)="onPlayerSelectionChanged(player[1],$event.checked)" [checked]="player[0]">
             {{ player[1].name }} ({{ player[1].nickName }})</mat-checkbox>
+            <button mat-icon-button color="accent" aria-label="Example icon-button with a heart icon" (click)="deactivatePlayer(player[1])">
+              <mat-icon>cancel</mat-icon>
+            </button>
         </li>
       </ol>
 
@@ -25,6 +28,7 @@
 
 
       <button mat-stroked-button aria-label="Add player" color="primary" (click)="openDialog()">Add Player</button>
+      <button mat-stroked-button aria-label="Show Inactive Players" *ngIf="hasAnyInActivePlayers" color="primary" (click)="openInactiveDialog()">Show Inactive Players</button>
       <button mat-raised-button aria-label="Randomise" color="primary" (click)="shuffleAndDivide()">Randomise</button>
 
 

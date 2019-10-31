@@ -101,4 +101,24 @@ export class DatalayerService {
     this.maps[index] = map;
     this.storageMap.set('maps', this.maps).subscribe(() => { });
   }
+
+  deactivatePlayer(player: Player) {
+    const index = this.players.findIndex((playerToFind) => {
+      return playerToFind.id === player.id;
+    });
+
+    this.players[index].isInactive = true;
+
+    return this.storageMap.set('players', this.players);
+  }
+
+  activatePlayer(player: Player) {
+    const index = this.players.findIndex((playerToFind) => {
+      return playerToFind.id === player.id;
+    });
+
+    this.players[index].isInactive = false;
+
+    return this.storageMap.set('players', this.players);
+  }
 }
