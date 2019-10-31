@@ -6,6 +6,8 @@ import { SwUpdate } from '@angular/service-worker';
 })
 export class SwUpdateService {
 
+  promptEvent: any;
+
   constructor(updates: SwUpdate) {
     updates.available.subscribe(event => {
       console.log('Event Type is ', event.type);
@@ -18,5 +20,13 @@ export class SwUpdateService {
       console.log('Old veriosn', event.previous);
       console.log('Current Version', event.current);
     });
+
+    window.addEventListener('beforeinstallprompt', event => {
+      this.promptEvent = event;
+    });
+
+    window.addEventListener('appinstalled', (event) => {
+      console.log('installed');
+     });
   }
 }

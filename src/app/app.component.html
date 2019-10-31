@@ -4,5 +4,8 @@
     Welcome to {{ title }}!
   </h1>
 </div>
+<button *ngIf="Pwa.promptEvent" (click)="installPwa()">
+    Install
+  </button>
 <app-players></app-players>
 <router-outlet></router-outlet>

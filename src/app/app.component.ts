@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SwUpdateService } from './sw-update.service';
 
 @Component({
   selector: 'app-root',
@@ -6,10 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title = 'PlayersAndMaps';
 
-  constructor() {
+  constructor(public Pwa: SwUpdateService) {
 
   }
 
-  title = 'PlayersAndMaps';
+  installPwa(): void {
+    this.Pwa.promptEvent.prompt();
+  }
+
 }
