@@ -35,6 +35,8 @@ export class DatalayerService {
 
   private maps: Map[];
 
+  isCtf: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
+
   selectedPlayersCount: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   reloadPresetData(): void {
@@ -66,6 +68,10 @@ export class DatalayerService {
   setSelectedPlayersCount(setSelectedPlayersCount: number): void {
     console.log(`Setting ${setSelectedPlayersCount}`);
     this.selectedPlayersCount.next(setSelectedPlayersCount);
+  }
+
+  setIsCtf(isCtf: boolean): void {
+    this.isCtf.next(isCtf);
   }
 
   insertPlayers(): Observable<undefined> {

@@ -19,6 +19,8 @@ export class MapsComponent implements OnInit {
 
   noOfPlayers: number;
 
+  isCtf: boolean;
+
   constructor(private datalayer: DatalayerService, public dialog: MatDialog) {
 
     datalayer.selectedPlayersCount.subscribe((numberOfPlayers) => {
@@ -31,11 +33,17 @@ export class MapsComponent implements OnInit {
       }
     });
 
+    datalayer.isCtf.subscribe((isCtf) => {
+      this.isCtf = isCtf;
+    });
   }
 
 
   ngOnInit() {
+    this.getMaps();
+  }
 
+  private getMaps() {
     this.datalayer.getMaps().subscribe((maps) => {
       if (maps === undefined || maps === null) {
         this.datalayer.insertMaps().subscribe(() => {
@@ -75,6 +83,9 @@ export class MapsComponent implements OnInit {
   }
 
   randomiseMaps() {
+    if (this.maps.length < 0) {
+      this.getMaps();
+    }
     const now = new Date().getMilliseconds();
     const unsortedMaps = this.maps.filter((map) => {
       return !map.isDm && map.lastPlayedAt === 0 || (now - map.lastPlayedAt >= 3 * 24 * 60 * 60 * 1000);
@@ -88,7 +99,7 @@ export class MapsComponent implements OnInit {
         if (first.isSnow) {
           return -2;
         } else if (second.isSnow) {
-          return 2;
+          return 1;
         } else {
           return 0;
         }
@@ -100,13 +111,14 @@ export class MapsComponent implements OnInit {
     let i = 0;
     let t: Map = { name: '', id: -1, path: '', isDm: false, isSnow: false, lastPlayedAt: 0 };
     if (l <= 1) { return; }
-    while (l) {
+    while (l) { 
       i = Math.floor(Math.random() * l--);
       t = unsortedMaps[l];
       unsortedMaps[l] = unsortedMaps[i];
       unsortedMaps[i] = t;
     }
 
+    console.log(unsortedMaps);
     this.playableMaps = unsortedMaps.slice(0, this.noOfMaps);
   }
 

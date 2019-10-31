@@ -31,6 +31,7 @@ export class PlayersComponent implements OnInit {
   randomTeams: [string, Player[]][] = [];
 
   constructor(private datalayer: DatalayerService, public dialog: MatDialog) {
+    this.datalayer.setIsCtf(this.isCtfMode);
   }
 
   getMaxPlayers(): number {
@@ -42,15 +43,16 @@ export class PlayersComponent implements OnInit {
     if (checked) {
       this.noOfTeams = 2;
     }
+    this.datalayer.setIsCtf(this.isCtfMode);
   }
 
   selectAll(checked: boolean) {
     this.playersAndSelection = [];
-    this.players.forEach((player) => {
+    this.players.filter((player) => !player.isInactive).forEach((player) => {
       this.playersAndSelection.push([checked, player]);
     });
     if (checked) {
-      this.selectedPlayers = this.players;
+      this.selectedPlayers = this.players.filter((player) => !player.isInactive);
     } else {
       this.selectedPlayers = [];
     }
@@ -160,6 +162,7 @@ export class PlayersComponent implements OnInit {
   }
 
   private reloadPlayers() {
+    this.selectAll(false);
     this.players = [];
     this.playersAndSelection = [];
     this.loadPlayers();
