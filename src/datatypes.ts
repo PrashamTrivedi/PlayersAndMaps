@@ -21,3 +21,8 @@ export class DataServiceAndPlayers {
     dataService: DatalayerService;
     players: Player[];
 }
+
+export class DataServiceAndMaps{
+    dataService: DatalayerService;
+    maps: Map[];
+}

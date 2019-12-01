@@ -16,7 +16,8 @@ import { AddplayerdialogComponent } from './addplayerdialog/addplayerdialog.comp
 import { MapsComponent } from './maps/maps.component';
 import { AddmapdialogComponent } from './addmapdialog/addmapdialog.component';
 import { InactivePlayerDialogComponent } from './inactive-player-dialog/inactive-player-dialog.component';
-
+import { AllMapsComponent } from './all-maps/all-maps.component';
+import { ScrollingModule } from '@angular/cdk/scrolling'
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,9 +25,10 @@ import { InactivePlayerDialogComponent } from './inactive-player-dialog/inactive
     AddplayerdialogComponent,
     MapsComponent,
     AddmapdialogComponent,
-    InactivePlayerDialogComponent
+    InactivePlayerDialogComponent,
+    AllMapsComponent
   ],
-  entryComponents: [AddplayerdialogComponent, AddmapdialogComponent, InactivePlayerDialogComponent],
+  entryComponents: [AddplayerdialogComponent, AddmapdialogComponent, InactivePlayerDialogComponent, AllMapsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -42,6 +44,7 @@ import { InactivePlayerDialogComponent } from './inactive-player-dialog/inactive
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
+    ScrollingModule,
     StorageModule.forRoot({
       IDBNoWrap: true
     })

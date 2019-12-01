@@ -3,6 +3,7 @@ import { DatalayerService } from '../datalayer.service';
 import { MatDialog } from '@angular/material';
 import { Map } from 'src/datatypes';
 import { AddmapdialogComponent } from '../addmapdialog/addmapdialog.component';
+import { AllMapsComponent } from '../all-maps/all-maps.component';
 
 @Component({
   selector: 'app-maps',
@@ -57,6 +58,18 @@ export class MapsComponent implements OnInit {
     });
   }
 
+  openMapsDialog() {
+    const mapsToShow = this.maps.sort((first, second) => { return first.lastPlayedAt - second.lastPlayedAt })
+    const dialogRef = this.dialog.open(AllMapsComponent, {
+      width: '350px',
+      data: { dataService: this.datalayer, maps: mapsToShow }
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.randomiseMaps()
+    });
+  }
+
   openDialog() {
     const nextId = this.maps.length + 1;
     const dialogRef = this.dialog.open(AddmapdialogComponent, {
@@ -88,7 +101,7 @@ export class MapsComponent implements OnInit {
     }
     const now = new Date().getMilliseconds();
     const unsortedMaps = this.maps.filter((map) => {
-      return !this.isCtf || (!map.isDm && map.lastPlayedAt === 0 || (now - map.lastPlayedAt >= 3 * 24 * 60 * 60 * 1000));
+      return !this.isCtf || (map.lastPlayedAt === 0 || (now - map.lastPlayedAt >= 3 * 24 * 60 * 60 * 1000));
     }).sort((first, second) => {
       if (first.isDm) {
         return -1;
@@ -111,7 +124,7 @@ export class MapsComponent implements OnInit {
     let i = 0;
     let t: Map = { name: '', id: -1, path: '', isDm: false, isSnow: false, lastPlayedAt: 0 };
     if (l <= 1) { return; }
-    while (l) { 
+    while (l) {
       i = Math.floor(Math.random() * l--);
       t = unsortedMaps[l];
       unsortedMaps[l] = unsortedMaps[i];
@@ -123,8 +136,14 @@ export class MapsComponent implements OnInit {
   }
 
   private loadMaps(maps: unknown) {
+    const dayOfWeek = new Date().getDay()
     if (maps instanceof Array) {
-      this.maps = maps;
+      this.maps = maps.map(map => {
+        if (dayOfWeek === 0) {
+          map.lastPlayedAt = 0
+        }
+        return map
+      });
       console.log(this.maps);
     }
 

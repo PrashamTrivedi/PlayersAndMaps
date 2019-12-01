@@ -1,0 +1,22 @@
+<p>All Maps</p>
+<button mat-stroked-button aria-label="Reset All Maps" color="primary" (click)="resetAllMaps()">Reset Last Played For
+    All
+    Maps</button>
+
+<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+    <div *cdkVirtualFor="let map of maps" class="example-item">
+        <div>
+            <img [src]="map.path" height="50" width="50" /> {{ map.name }}
+        </div>
+        <div>
+            <mat-checkbox [(ngModel)]="map.isDm">Is For DM</mat-checkbox>
+        </div>
+
+        <div>
+            <b>Last Played at: </b> {{ map.lastPlayedAt }}
+            <button *ngIf="map.lastPlayedAt>0" mat-stroked-button aria-label="Reset Play Time" color="primary"
+                (click)="resetMap(map)">Reset Last
+                Played</button>
+        </div>
+    </div>
+</cdk-virtual-scroll-viewport>

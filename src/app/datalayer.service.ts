@@ -127,4 +127,19 @@ export class DatalayerService {
 
     return this.storageMap.set('players', this.players);
   }
+
+  resetMap(mapToFind: Map) {
+    const index = this.maps.findIndex(map => mapToFind.id === map.id)
+    this.maps[index].lastPlayedAt = 0
+    return this.storageMap.set('map', this.maps)
+  }
+
+  resetAllMaps() {
+    this.maps.forEach(map => {
+      map.lastPlayedAt = 0
+    })
+
+    console.log(this.maps)
+    return this.storageMap.set('map', this.maps)
+  }
 }
